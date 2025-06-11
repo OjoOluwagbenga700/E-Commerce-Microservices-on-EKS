@@ -34,3 +34,16 @@ variable "private_subnets" {
   type        = list(string)
   default     = ["10.0.101.0/24", "10.0.102.0/24"]
 }
+variable "service_ipv4_cidr" {
+  description = "The CIDR block for the Kubernetes service network"
+  type        = string
+  default     = "10.100.0.0/16"
+}
+variable "tags" {
+  description = "A map of tags to assign to the resources"
+  type        = map(string)
+  default = {
+    Project = "ecommerce"
+    Owner   = "terraform"
+  }
+}
