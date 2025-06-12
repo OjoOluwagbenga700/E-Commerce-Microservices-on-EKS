@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudmart-backend-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cloudmart-backend-app
+  template:
+    metadata:
+      labels:
+        app: cloudmart-backend-app
+    spec:
+      serviceAccountName: cloudmart-pod-execution-role
+      containers:
+      - name: cloudmart-backend-app
+        image: ${BACKEND_IMAGE}
+        env:
+        - name: PORT
+          value: "5000"
+        - name: AWS_REGION
+          value: "us-east-1"
+---
+
+apiVersion: v1
+
+kind: Service
+metadata:
+  name: cloudmart-backend-app-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: cloudmart-backend-app
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000

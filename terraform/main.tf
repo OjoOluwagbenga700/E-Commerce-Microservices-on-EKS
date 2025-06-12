@@ -8,7 +8,19 @@ module "networking" {
   private_subnets = var.private_subnets
 }
 
+module "s3" {
+  source       = "./modules/s3"
+  project_name = var.project_name
+  bucket_name  = var.bucket_name
 
+}
+module "dynamodb" {
+  source       = "./modules/dynamodb"
+  products_table = var.products_table
+  orders_table   = var.orders_table
+  tickets_table  = var.tickets_table
+  
+}
 
 module "ecr" {
   source       = "./modules/ecr"

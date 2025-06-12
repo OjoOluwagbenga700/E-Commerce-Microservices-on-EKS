@@ -4,15 +4,39 @@ variable "aws_region" {
   default     = "us-east-1"
 
 }
+variable "bucket_name" {
+  description = "The name of the S3 bucket for storing application data"
+  type        = string
+  default     = "app-bucket"
+}
+
+variable "products_table" {
+  description = "The name of the DynamoDB table for products"
+  type        = string
+  default     = "cloudmart-products"
+  
+}
+variable "orders_table" {
+  description = "The name of the DynamoDB table for orders"
+  type        = string
+  default     = "cloudmart-orders"
+
+}
+variable "tickets_table" {
+  description = "The name of the DynamoDB table for tickets"
+  type        = string
+  default     = "cloudmart-tickets"
+
+}
 variable "project_name" {
   description = "The name of the project for naming resources"
   type        = string
-  default     = "ecommerce"
+  default     = "cloudmart"
 }
 variable "cluster_name" {
   description = "The name of the EKS cluster"
   type        = string
-  default     = "ecommerce-cluster"
+  default     = "cloudmart-cluster"
 }
 variable "azs" {
   description = "List of availability zones to use for the VPC"
@@ -43,7 +67,7 @@ variable "tags" {
   description = "A map of tags to assign to the resources"
   type        = map(string)
   default = {
-    Project = "ecommerce"
+    Project = "cloudmart"
     Owner   = "terraform"
   }
 }
