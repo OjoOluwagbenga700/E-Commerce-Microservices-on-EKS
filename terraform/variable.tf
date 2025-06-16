@@ -14,7 +14,7 @@ variable "products_table" {
   description = "The name of the DynamoDB table for products"
   type        = string
   default     = "cloudmart-products"
-  
+
 }
 variable "orders_table" {
   description = "The name of the DynamoDB table for orders"

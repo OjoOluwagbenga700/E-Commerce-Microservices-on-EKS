@@ -15,11 +15,11 @@ module "s3" {
 
 }
 module "dynamodb" {
-  source       = "./modules/dynamodb"
+  source         = "./modules/dynamodb"
   products_table = var.products_table
   orders_table   = var.orders_table
   tickets_table  = var.tickets_table
-  
+
 }
 
 module "ecr" {
@@ -32,7 +32,11 @@ module "ecr" {
 module "iam" {
   source       = "./modules/iam"
   project_name = var.project_name
-
+  aws_region   = var.aws_region
+  products_table = var.products_table
+  orders_table   = var.orders_table
+  tickets_table  = var.tickets_table
+  bucket_name    = var.bucket_name
 }
 module "eks" {
   source                         = "./modules/eks"

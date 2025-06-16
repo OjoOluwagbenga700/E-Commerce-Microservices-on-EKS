@@ -1,7 +1,7 @@
 locals {
   services = {
-    frontend = "${path.module}/../../../frontend"
-    backend  = "${path.module}/../../../backend"
+    frontend = "${path.module}/../../../cloudmart/frontend"
+    backend  = "${path.module}/../../../cloudmart/backend"
   }
 }
 # ECR Repositories
@@ -36,9 +36,9 @@ resource "docker_registry_image" "image_push" {
   for_each = local.services
   name       = docker_image.image[each.key].name
   depends_on = [
-    aws_ecr_repository.ecr_repo[each.key],
-    docker_image.image[each.key]
-  ]
+    aws_ecr_repository.ecr_repo,
+    docker_image.image]
+  
 }
 
 
